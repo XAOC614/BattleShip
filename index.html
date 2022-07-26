@@ -18,6 +18,7 @@
 </head>
 <body>
     <div id="board">
+        <div id="messageArea"></div>
         <table>
             <tr>
                 <td id="00"></td><td id="01"></td><td id="02"></td><td id="03"></td><td id="04"></td><td id="05"></td><td id="06"></td>
@@ -41,6 +42,10 @@
                 <td id="60"></td><td id="61"></td><td id="62"></td><td id="63"></td><td id="64"></td><td id="65"></td><td id="66"></td>
             </tr>
         </table>
+        <form>
+            <input type="text" id="guessInput" placeholder="A0">
+            <input type="button" id="fireButton" value="Fire!">
+        </form>
     </div>
     <script src="battleship.js"></script>
 </body>
