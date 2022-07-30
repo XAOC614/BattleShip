@@ -17,11 +17,22 @@ let model =  {
             let index = ship.locations.indexOf(guess);
             if (index>=0) {
                 ship.hits[index] = "hit"
+                if (this.isSunk(ship)){
+                    this.shipSunk++
+                }
                 return true;
             }
             
         }
         return false;
+    },
+    isSunk : function(ship){
+        for (let i=0; i<this.shipLength;i++){
+            if(ship.hits[i] !== "hit"){
+                return false;
+            }
+        }
+        return true;
     }
 }
 
