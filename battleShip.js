@@ -17,13 +17,18 @@ let model =  {
             let index = ship.locations.indexOf(guess);
             if (index>=0) {
                 ship.hits[index] = "hit"
+                viev.displayHit(guess);
+                viev.displayMessage("HIT!")
                 if (this.isSunk(ship)){
+                    viev.displayMessage("You sank my battleship!")
                     this.shipSunk++
                 }
                 return true;
             }
             
         }
+        viev.displayMiss(guess);
+        viev.displayMessage("You missed.")
         return false;
     },
     isSunk : function(ship){
@@ -36,7 +41,13 @@ let model =  {
     }
 }
 
+let controller = {
+    guesses : 0,
 
+    processGuess : function(guess){
+
+    }
+}
 
 let viev = {
     displayMessage : function (msg){
@@ -52,4 +63,14 @@ displayMiss : function (location){
     let cell = document.getElementById(location);
     cell.setAttribute("class", "miss")
 }
+}
+function parseGuess(guess){
+let alphabet = ['A ', 'B', 'C', 'D', 'E', 'F', 'G'];
+
+    if(guess === null || guess.length !==2){
+        alert ("Ты ввел неверное значение");
+    }else {
+        let firstChar = guess.charAt(0);
+        let row = alphabet.indexOf(firstChar);
+    }
 }
