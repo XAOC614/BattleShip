@@ -14,12 +14,14 @@ let model =  {
 
         for (let i=0; i<this.numShips; i++){
             let ship = this.ships[i];
-            locations = ship.locations;
-            let index = locations.indexOf(guess);
+            let index = ship.locations.indexOf(guess);
             if (index>=0) {
-                //есть попадание!
+                ship.hits[index] = "hit"
+                return true;
             }
+            
         }
+        return false;
     }
 }
 
