@@ -45,6 +45,10 @@ let controller = {
     guesses : 0,
 
     processGuess : function(guess){
+        let location = parseGuess(guess);
+        if(location){
+            
+        }  
 
     }
 }
@@ -72,5 +76,15 @@ let alphabet = ['A ', 'B', 'C', 'D', 'E', 'F', 'G'];
     }else {
         let firstChar = guess.charAt(0);
         let row = alphabet.indexOf(firstChar);
+        let column = guess.charAt(1);
+
+        if(isNaN(row) || isNaN(column)){
+            alert ("Это не верное число");
+        }else if (row<0 || row>model.boardSize || column<0 || column>model.boardSize){
+            alert("Oops, that`s off the board!");
+        }else {
+            return row + column;
+        }
     }
+    return null;
 }
