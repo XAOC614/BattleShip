@@ -1,3 +1,18 @@
+let viev = {
+    displayMessage : function (msg){
+        let messageArea = document.getElementById("messageArea")
+        messageArea.innerHTML = msg
+    },
+
+displayHit : function (location){
+    let cell = document.getElementById(location);
+    cell.setAttribute("class", "hit")
+},
+displayMiss : function (location){
+    let cell = document.getElementById(location);
+    cell.setAttribute("class", "miss")
+}
+}
 let model =  {
     boardSize : 7,
     numShips : 3,
@@ -56,22 +71,6 @@ let controller = {
 
     }
 }
-
-let viev = {
-    displayMessage : function (msg){
-        let messageArea = document.getElementById("messageArea")
-        messageArea.innerHTML = msg
-    },
-
-displayHit : function (location){
-    let cell = document.getElementById(location);
-    cell.setAttribute("class", "hit")
-},
-displayMiss : function (location){
-    let cell = document.getElementById(location);
-    cell.setAttribute("class", "miss")
-}
-}
 function parseGuess(guess){
 let alphabet = ['A ', 'B', 'C', 'D', 'E', 'F', 'G'];
 
@@ -92,3 +91,11 @@ let alphabet = ['A ', 'B', 'C', 'D', 'E', 'F', 'G'];
     }
     return null;
 }
+function init() {
+    let fireButton = document.getElementById("fireButton");
+    fireButton.onclick = handleFireButton;
+}
+function handleFireButton(){
+    //
+}
+window.onload = init;
