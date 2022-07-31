@@ -20,9 +20,9 @@ let model =  {
     shipSunk :0,
 
 
-    ships :[{locations : ["06","16","26"], hits : ["", "", ""]} ,
-            {locations : ["24","34","44"], hits : ["", "", ""]} ,
-            {locations : ["10","11","12"], hits : ["", "", ""]}],
+    ships :[{locations : [0,0,0], hits : ["", "", ""]} ,
+            {locations : [0,0,0], hits : ["", "", ""]} ,
+            {locations : [0,0,0], hits : ["", "", ""]}],
 
 
     fire : function(guess){
@@ -54,33 +54,46 @@ let model =  {
         }
         return true;
     },
-    generateShipLocation : function(){
+    generateShipLocations : function(){
         let locations;
         for (let i=0; i<this.numShips;i++){
             do{
                 locations = this.generateShip();
-            }while (this.collisions(locations));
+            }while(this.collision(locations));
             this.ships[i].locations = locations;
         }
     },
     generateShip : function(){
-        let direction = math.floor(Math.random()*2);
+        let direction = Math.floor(Math.random()*2);
         let row, col;
         if(direction === 1) {
-            // generate position
+            row = Math.floor(Math.random() * this.boardSize);
+            col = Math.floor(Math.random() * (this.boardSize - this.shipLength));
         }else {
-            // generate position
+            row = Math.floor(Math.random() * (this.boardSize - this.shipLength));
+            col = Math.floor(Math.random() * this.boardSize);
         }
         let newShipLocations = [];
         for ( let i=0; i<this.shipLength;i++){
             if(direction === 1){
-                // add massive
+                newShipLocations.push(row + "" + (col+i));
             }else{
-                // add massive
+                newShipLocations.push((row+i) + "" + col);
             }
         }
         return newShipLocations;
-    }
+    },
+    collision: function(locations) {
+		for (var i = 0; i < this.numShips; i++) {
+			var ship = this.ships[i];
+			for (var j = 0; j < locations.length; j++) {
+				if (ship.locations.indexOf(locations[j]) >= 0) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 }
 
 let controller = {
@@ -123,6 +136,7 @@ function init() {
     fireButton.onclick = handleFireButton;
     let guessInput = document.getElementById("guessInput");
     guessInput.onkeypress = handleKeyPress;
+    model.generateShipLocations();
 }
 function handleFireButton(){
     let guessInput = document.getElementById("guessInput");
