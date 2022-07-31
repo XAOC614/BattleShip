@@ -72,7 +72,7 @@ let controller = {
     }
 }
 function parseGuess(guess){
-let alphabet = ['A ', 'B', 'C', 'D', 'E', 'F', 'G'];
+let alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
     if(guess === null || guess.length !==2){
         alert ("Ты ввел неверное значение");
@@ -83,7 +83,7 @@ let alphabet = ['A ', 'B', 'C', 'D', 'E', 'F', 'G'];
 
         if(isNaN(row) || isNaN(column)){
             alert ("Это не верное число");
-        }else if (row<0 || row>model.boardSize || column<0 || column>model.boardSize){
+        }else if ( row<0 || row>model.boardSize || column<0 || column>model.boardSize ){
             alert("Oops, that`s off the board!");
         }else {
             return row + column;
@@ -96,6 +96,9 @@ function init() {
     fireButton.onclick = handleFireButton;
 }
 function handleFireButton(){
-    //
+    let guessInput = document.getElementById("guessInput");
+    let guess = guessInput.value;
+    controller.processGuess(guess);
+    guessInput.value = "";
 }
 window.onload = init;
