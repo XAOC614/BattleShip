@@ -94,11 +94,20 @@ let alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 function init() {
     let fireButton = document.getElementById("fireButton");
     fireButton.onclick = handleFireButton;
+    let guessInput = document.getElementById("guessInput");
+    guessInput.onkeypress = handleKeyPress;
 }
 function handleFireButton(){
     let guessInput = document.getElementById("guessInput");
     let guess = guessInput.value;
     controller.processGuess(guess);
     guessInput.value = "";
+}
+function handleKeyPress(e){
+    let fireButton = document.getElementById("fireButton");
+    if( e.keyCode === 13 ){
+        fireButton.click();
+        return false;
+    }
 }
 window.onload = init;
