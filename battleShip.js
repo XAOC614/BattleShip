@@ -53,6 +53,33 @@ let model =  {
             }
         }
         return true;
+    },
+    generateShipLocation : function(){
+        let locations;
+        for (let i=0; i<this.numShips;i++){
+            do{
+                locations = this.generateShip();
+            }while (this.collisions(locations));
+            this.ships[i].locations = locations;
+        }
+    },
+    generateShip : function(){
+        let direction = math.floor(Math.random()*2);
+        let row, col;
+        if(direction === 1) {
+            // generate position
+        }else {
+            // generate position
+        }
+        let newShipLocations = [];
+        for ( let i=0; i<this.shipLength;i++){
+            if(direction === 1){
+                // add massive
+            }else{
+                // add massive
+            }
+        }
+        return newShipLocations;
     }
 }
 
